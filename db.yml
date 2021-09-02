@@ -28,7 +28,7 @@
       register: db_out
 
     - debug:
-        var: db_out.db
+        var: db_out
 
     - name: creating the mysql user
       mysql_user:
