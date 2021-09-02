@@ -1,6 +1,10 @@
 - name: setup mysql server
   hosts: dbsrv
   become: true
+  vars:
+    dbname: sayeed
+    dbuser: playuser
+    dbpass: admin123
   tasks:
     - name: installing mysql server
       yum:
@@ -19,13 +23,21 @@
 
     - name: creating the mysql database accounts
       mysql_db:
-        name: accounts
+        name: "{{dbname}}"
         state: present
+      register: db_out
+
+    - debug:
+        var: db_out
 
     - name: creating the mysql user
       mysql_user:
-        name: admin
-        password: admin123
+        name: "{{dbuser}}"
+        password: "{{dbpass}}"
         priv: '".*":ALL,GRANT'
         state: present
+      register: sqluser_out
+
+    - debug:
+        var: sqluser_out
 
