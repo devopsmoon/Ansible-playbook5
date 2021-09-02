@@ -7,7 +7,25 @@
         name: mariadb-server
         state: present
 
+    - name: installing python mysql server
+      yum:
+        name: MySQL-python
+        state: present
+
     - name: starting the mysql service
       service:
         name: mariadb
         state: started
+
+    - name: creating the mysql database accounts
+      mysql_db:
+        name: accounts
+        state: present
+
+    - name: creating the mysql user
+      mysql_user:
+        name: admin
+        password: admin123
+        priv: '".*":ALL,GRANT'
+        state: present
+
