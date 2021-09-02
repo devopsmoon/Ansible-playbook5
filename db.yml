@@ -1,10 +1,6 @@
 - name: setup mysql server
   hosts: dbsrv
   become: true
-  vars:
-    dbname: sayeed
-    dbuser: playuser
-    dbpass: admin123
   tasks:
     - name: installing mysql server
       yum:
