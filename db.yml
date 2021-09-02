@@ -25,10 +25,10 @@
       mysql_db:
         name: "{{dbname}}"
         state: present
-      register: db_out.db
+      register: db_out
 
     - debug:
-        var: db_out
+        var: db_out.db
 
     - name: creating the mysql user
       mysql_user:
