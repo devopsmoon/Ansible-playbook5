@@ -25,7 +25,7 @@
       mysql_db:
         name: "{{dbname}}"
         state: present
-      register: db_out
+      register: db_out.db
 
     - debug:
         var: db_out
@@ -39,5 +39,5 @@
       register: sqluser_out
 
     - debug:
-        var: sqluser_out
+        var: sqluser_out.user
 
