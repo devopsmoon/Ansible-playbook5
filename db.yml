@@ -1,0 +1,13 @@
+- name: setup mysql server
+  hosts: dbsrv
+  become: true
+  tasks:
+    - name: installing mysql server
+      yum:
+        name: mariadb-server
+        state: present
+
+    - name: starting the mysql service
+      service:
+        name: mariadb
+        state: started
